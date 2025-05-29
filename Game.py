@@ -14,19 +14,20 @@ class GameManager:
         self.WIDTH = WIDTH
         self.HEIGHT = HEIGHT
         self.score = 0
-        
         self.dialog_box = None
         self.show_dialog = False
 
-        pygame.mixer.init()
-        pygame.mouse.set_visible(False)
-        self.button_font = pygame.font.Font("Assets/font/PixelPurl.ttf", 36)
-        self.score_font = pygame.font.Font("Assets/font/PixelPurl.ttf", 64)  # ukuran besar khusus score
-        self.cursor_image = pygame.image.load("Assets/meowchi/cursor.png").convert_alpha()
-        self.cursor_image = pygame.transform.scale(self.cursor_image, (32, 32))
-        
-        self.menu_bg = pygame.image.load(os.path.join("Assets/Background/background_menu.png"))
-        self.menu_bg = pygame.transform.scale(self.menu_bg, (WIDTH, HEIGHT))
+        try:
+            pygame.mixer.init()
+            pygame.mouse.set_visible(False)
+            self.button_font = pygame.font.Font("Assets/font/PixelPurl.ttf", 36)
+            self.score_font = pygame.font.Font("Assets/font/PixelPurl.ttf", 64)  
+            self.cursor_image = pygame.image.load("Assets/meowchi/cursor.png").convert_alpha()
+            self.cursor_image = pygame.transform.scale(self.cursor_image, (32, 32))
+            self.menu_bg = pygame.image.load(os.path.join("Assets/Background/background_menu.png"))
+            self.menu_bg = pygame.transform.scale(self.menu_bg, (WIDTH, HEIGHT))
+        except Exception as e:
+            print(f"[ERROR loading assets in __init__]: {e}")
 
         self.state = "menu"  # state: "menu", "game", "endgame"
         self.running = True
@@ -264,9 +265,9 @@ class GameManager:
                 if len(self.enemy_list) < 5:
                     self.enemy_list.append(random.choice([TikusDapur, TikusPutih])(self.WIDTH, self.HEIGHT))
 
-            if self.score >= 2 and self.level == 1:
+            if self.score >= 100 and self.level == 1:
                 self.show_next_button = True 
-            elif self.level == 2 and self.dogs_killed >= 1:
+            elif self.level == 2 and self.dogs_killed >= 5:
                 self.show_next_button = True
             elif self.level == 3 and self.cats_killed >= 1:
                 self.show_next_button = True
