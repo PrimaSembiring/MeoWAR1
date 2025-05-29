@@ -264,9 +264,9 @@ class GameManager:
                 if len(self.enemy_list) < 5:
                     self.enemy_list.append(random.choice([TikusDapur, TikusPutih])(self.WIDTH, self.HEIGHT))
 
-            if self.score >= 2 and self.level == 1:
+            if self.score >= 100 and self.level == 1:
                 self.show_next_button = True 
-            elif self.level == 2 and self.dogs_killed >= 1:
+            elif self.level == 2 and self.dogs_killed >= 5:
                 self.show_next_button = True
             elif self.level == 3 and self.cats_killed >= 1:
                 self.show_next_button = True
