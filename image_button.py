@@ -3,7 +3,7 @@ import pygame
 class ImageButton:
     def __init__(self, image_path, x, y, callback, size=(200, 80)):
         self.image = pygame.image.load(image_path).convert_alpha()
-        self.image = pygame.transform.scale(self.image, size)  # pakai ukuran yang diberikan
+        self.image = pygame.transform.scale(self.image, size)
         self.rect = self.image.get_rect(topleft=(x, y))
         self.callback = callback
 
